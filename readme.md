@@ -1,22 +1,36 @@
-# CSC4120 Project - Party Together Problem 
+# CSC4120 Project — Party Together Problem
 
-This is a minimal implementation of an interactive command line client to run our project. Essentially, you only need to write the solvers as we've settled down everything else for you. 
+This repository contains my complete implementation of the **Party Together Problem (PTP)** project for **CSC4120, Fall 2025**.
 
-## Requirements
-`pip install networkx`
+The project finds a driving route and pickup locations for a group of friends, balancing driving cost and walking distance. The car starts and ends at location `0`, and each friend is picked up at their home or a neighboring location.
 
-## Run the client
-Type in the terminal
+## Implementation
 
-`python main.py`
+- **Metric TSP:** An exact Held–Karp dynamic programming solver.
+- **Home Pickup (PHP):** A solver that reduces home pickup to Metric TSP and expands the result into a route on the original graph.
+- **Party Together (PTP):** A local-search heuristic with pickup assignment and feasibility repair.
+- **Interactive CLI:** Input validation, solver execution, solution checking, and cost evaluation.
 
-Following instructions are supported:
+The repository also includes sample inputs, saved outputs, a notebook, and my [project report](report.pdf). The original [project specification](proj_description%202025b.pdf) is included for reference.
 
-- exit: quit the client
-- ls_input: list all input files (default under ./inputs folder)
-- ck_input: check whether student created inputs are valid or not
-- test_php: test pthp solver 
-- test_ptp: test ptp solver
-- test_php_all: test pthp solver on all input files
-- test_ptp_all: test ptp solver on all input files
-- --help: get help instructions
+## Setup and Usage
+
+Install the dependencies and start the client from the repository root:
+
+```bash
+python3 -m pip install networkx matplotlib
+python3 main.py
+```
+
+Available commands:
+
+| Command | Description |
+| --- | --- |
+| `ls_input` | List available input files. |
+| `ck_input` | Validate student-created inputs. |
+| `test_php` / `test_ptp` | Run a solver on selected inputs. |
+| `test_php_all` / `test_ptp_all` | Run a solver on all inputs. |
+| `--help` | Show help. |
+| `exit` | Quit the client. |
+
+When prompted, enter input filenames such as `1.in 2.in`. PTP solutions are saved to `outputs/`.
